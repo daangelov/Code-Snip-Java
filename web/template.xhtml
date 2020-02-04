@@ -9,7 +9,7 @@
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-    <title><ui:insert name="title">Facelets Template</ui:insert></title>
+    <title><ui:insert name="title">Title</ui:insert></title>
 </h:head>
 
 <h:body>
@@ -23,24 +23,12 @@
             CodeSnip
         </a>
 
-        <!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigationBar" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Menu">-->
-        <!--            <span class="navbar-toggler-icon"/>-->
-        <!--        </button>-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigationBar" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Menu">
+            <span class="navbar-toggler-icon"/>
+        </button>
 
         <div id="navigationBar" class="collapse navbar-collapse">
-            <h:form id="loginForm" class="form-inline my-2 my-lg-0 ml-auto" method="POST">
-
-                <label class="sr-only" for="username">Потребителско име</label>
-                <h:inputText id="username" name="username" type="text" styleClass="form-control mr-sm-2 mb-2 mb-sm-0"
-                             value="Потребителско име"/>
-                <label class="sr-only" for="password">Парола</label>
-                <h:inputText id="password" name="password" type="password" styleClass="form-control mr-sm-2"
-                             value="Парола"/>
-
-                <h:commandButton type="submit" styleClass="btn btn-default" value="Вход"/>
-                <a class="btn btn-default" href="register.html">Регистрация</a>
-            </h:form>
-
+            <ui:insert name="navbar">Navigator bar</ui:insert>
         </div>
     </div>
 

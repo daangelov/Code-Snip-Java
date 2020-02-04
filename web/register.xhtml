@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="./template.xhtml">
+    <ui:define name="title">Регистрация</ui:define>
+
+    <ui:define name="navbar">
+    </ui:define>
+
+    <ui:define name="container">
+        <div class="container mt-2 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h2>Регистрация</h2>
+                        </div>
+                        <div class="card-body">
+                            <h:form id="registerForm" method="POST" class="needs-validation" novalidate="true">
+
+                                <!-- First Name -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="firstNameAddOn"><i class="fas fa-user"/></span>
+                                    </div>
+                                    <input id="firstName" name="first_name" type="text" class="form-control" placeholder="Име" aria-label="Име" aria-describedby="firstNameAddOn" required>
+                                    <div class="invalid-feedback">Невалидно име</div>
+                                </div>
+
+                                <!-- Last Name -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="lastNameAddOn"><i class="fas fa-user"/></span>
+                                    </div>
+                                    <input id="lastName" name="last_name" type="text" class="form-control" placeholder="Фамилия" aria-label="Фамилия" aria-describedby="lastNameAddOn" required>
+                                    <div class="invalid-feedback">Невалидна фамилия</div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="emailAddOn"><i class="fas fa-envelope-square"/></span>
+                                    </div>
+                                    <input id="email" name="email" type="email" class="form-control" placeholder="E-mail адрес" aria-label="E-mail адрес" aria-describedby="emailAddOn" required>
+                                    <div class="invalid-feedback">Невалиден email</div>
+                                </div>
+
+                                <!-- Username -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="usernameAddOn"><i class="fas fa-user"/></span>
+                                    </div>
+                                    <input id="username" name="username" type="text" class="form-control" placeholder="Потребителско име" aria-label="Потребителско име" aria-describedby="usernameAddOn" required>
+                                    <div class="invalid-feedback">Невалидно потребителско име</div>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="passwordAddOn"><i class="fas fa-lock"/></span>
+                                    </div>
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="Парола" aria-label="Парола" aria-describedby="passwordAddOn" required>
+                                    <div class="invalid-feedback">Невалидна парола</div>
+                                </div>
+
+                                <!-- Password Confirm-->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="confirmPasswordAddOn"><i class="fas fa-lock"/></span>
+                                    </div>
+                                    <input id="confirmPassword" type="password" class="form-control" placeholder="Потвърди парола" aria-label="Потвърди парола" aria-describedby="confirmPasswordAddOn" required>
+                                    <div class="invalid-feedback">Паролите не съвпадат</div>
+                                </div>
+
+                                <!-- Submit button -->
+                                <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Регистрирай се</button>
+                            </h:form>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 row">
+                        <div class="col text-center">
+                            <a class="btn btn-default" href="index.html"><i class="fas fa-arrow-left"/> Назад</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
