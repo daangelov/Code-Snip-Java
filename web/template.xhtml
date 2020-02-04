@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <title><ui:insert name="title">Facelets Template</ui:insert></title>
+</h:head>
+
+<h:body>
+    <!-- Loading div and gif -->
+    <div id="loading_div"></div>
+    <div id="loading_gif"></div>
+
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <a class="navbar-brand" href="index.html">
+            CodeSnip
+        </a>
+
+        <!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigationBar" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Menu">-->
+        <!--            <span class="navbar-toggler-icon"/>-->
+        <!--        </button>-->
+
+        <div id="navigationBar" class="collapse navbar-collapse">
+            <h:form id="loginForm" class="form-inline my-2 my-lg-0 ml-auto" method="POST">
+
+                <label class="sr-only" for="username">Потребителско име</label>
+                <h:inputText id="username" name="username" type="text" styleClass="form-control mr-sm-2 mb-2 mb-sm-0"
+                             value="Потребителско име"/>
+                <label class="sr-only" for="password">Парола</label>
+                <h:inputText id="password" name="password" type="password" styleClass="form-control mr-sm-2"
+                             value="Парола"/>
+
+                <h:commandButton type="submit" styleClass="btn btn-default" value="Вход"/>
+                <a class="btn btn-default" href="register.html">Регистрация</a>
+            </h:form>
+
+        </div>
+    </div>
+
+    <ui:insert name="container">Container</ui:insert>
+
+    <div class="footer mt-auto py-3 text-center fixed-bottom">
+        <div class="container">
+            <span class="text-muted">CodeSnip</span>
+        </div>
+    </div>
+
+    <!--    <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>-->
+    <!--    <script src="vendor/bootstrap/bootstrap.bundle.min.js" type="text/javascript"></script>-->
+    <!--    <script src="vendor/fontawesome/all.min.js" type="text/javascript"></script>-->
+    <!--    <script src="vendor/sweetalert2/sweetalert2.all.min.js" type="text/javascript"></script>-->
+
+    <!--    <script src="assets/js/main.js"></script>-->
+    <!--    <script src="assets/js/index.js"></script>-->
+</h:body>
+</html>

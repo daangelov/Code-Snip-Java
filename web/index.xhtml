@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="./template.xhtml">
+   <ui:define name="title">CodeSnip</ui:define>
+
+    <ui:define name="container">
+        <div class="container mt-2 mb-5">
+
+            <div id="jumbotron" class="jumbotron d-none">
+                <h1>Започни сега!</h1>
+                <p class="lead">Започни да използваш CodeSnip като първо си създадеш профил в нашия сайт!</p>
+                <a class="btn btn-lg btn-warning" href="register.html">Регистрирай се!</a>
+            </div>
+
+            <div class="row my-5">
+                <div class="col text-center">
+                    <div class="display-2">Code. Save. Use. Share.</div>
+                    <p class="lead">Никога не забравяй кода си вкъщи! Навсякъде и по всяко време. Лесеният начин за запазване, споделяне и използване на парчета код под формата на snippet.</p>
+                </div>
+            </div>
+
+            <div id="fastNav" class="row mt-4 justify-content-center d-none">
+                <div class="col-md-6">
+                    <div class="card">
+                        <h:link target="dashboard.html" href="dashboard.html"
+                                class="btn btn-lg btn-info">Моите парчета код</h:link>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
