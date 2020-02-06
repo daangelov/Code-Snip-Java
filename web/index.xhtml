@@ -12,7 +12,6 @@
 
     <ui:define name="navbar">
         <h:form id="loginForm" class="form-inline my-2 my-lg-0 ml-auto" method="POST">
-
             <label class="sr-only" for="username">Потребителско име</label>
             <h:inputText id="username" name="username" type="text" styleClass="form-control mr-sm-2 mb-2 mb-sm-0"
                          a:placeholder="Потребителско име"/>
@@ -21,7 +20,7 @@
                          a:placeholder="Парола"/>
 
             <h:commandButton type="submit" styleClass="btn btn-default" value="Вход" action="login"/>
-            <h:commandLink action="register.xhtml" styleClass="btn btn-default" value="Регистрация"/>
+            <h:outputLink value="register.xhtml" styleClass="btn btn-default">Регистрация</h:outputLink>
         </h:form>
     </ui:define>
 
