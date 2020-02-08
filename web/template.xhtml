@@ -11,26 +11,26 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
 
-    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-    <link rel="icon" href="assets/img/favicon.png"/>
+    <h:outputStylesheet library="bootstrap" name="bootstrap.min.css"/>
+    <h:outputStylesheet library="fontawesome" name="all.min.css"/>
+    <h:outputStylesheet library="css" name="main.css"/>
+
+    <link rel="icon" href="#{resource['images:favicon.png']}"/>
+
     <title><ui:insert name="title">Title</ui:insert></title>
 </h:head>
 
 <h:body>
     <!-- Loading div and gif -->
-    <div id="loading_div"></div>
-    <div id="loading_gif"></div>
+    <div id="loadingOverlay"></div>
+    <div id="loader"></div>
 
     <div class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <a class="navbar-brand" href="index.html">
-            CodeSnip
-        </a>
+        <h:outputLink value="index.xhtml" styleClass="navbar-brand">CodeSnip</h:outputLink>
 
-        <button class="navbar-toggler" type="button" a:data-toggle="collapse" a:data-target="#navigationBar"
-                a:aria-controls="navbarToggler" a:aria-expanded="false" a:aria-label="Menu">
-            <span class="navbar-toggler-icon"/>
-        </button>
+        <h:button styleClass="navbar-toggler navbar-toggler-icon" type="button" data-toggle="collapse"
+                  data-target="#navigationBar" aria-controls="navbarToggler" aria-expanded="false" aria-label="Menu"/>
 
         <div id="navigationBar" class="collapse navbar-collapse">
             <ui:insert name="navbar">Navigator bar</ui:insert>
@@ -39,19 +39,16 @@
 
     <ui:insert name="container">Container</ui:insert>
 
-    <div class="footer mt-auto py-3 text-center fixed-bottom">
+    <div class="footer mt-auto py-3 text-center">
         <div class="container">
             <span class="text-muted">CodeSnip</span>
         </div>
     </div>
 
-    <!--    <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>-->
-    <!--    <script src="vendor/bootstrap/bootstrap.bundle.min.js" type="text/javascript"></script>-->
-    <!--    <script src="vendor/fontawesome/all.min.js" type="text/javascript"></script>-->
-    <!--    <script src="vendor/sweetalert2/sweetalert2.all.min.js" type="text/javascript"></script>-->
+    <h:outputScript library="jquery" name="jquery.min.js"/>
+    <h:outputScript library="bootstrap" name="bootstrap.min.js"/>
+    <h:outputScript library="fontawesome" name="all.min.js"/>
+    <h:outputScript library="js" name="main.js"/>
 
-    <!--    <script src="assets/js/main.js"></script>-->
-    <!--    <script src="assets/js/index.js"></script>-->
-    <!--    <script src="assets/js/register.js"></script>-->
 </h:body>
 </html>
