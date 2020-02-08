@@ -1,11 +1,23 @@
 package models;
 
 import database.DbManager;
+import entities.User;
 
 import java.sql.*;
 import java.util.Objects;
 
-public class User {
+public class UserModel {
+
+    public void create(User user) {
+        // TODO implement this
+    }
+
+    public User find(String username) {
+        // TODO implement this
+
+        return new User();
+    }
+
     public static boolean login(String username, String password) {
 
         DbManager dbManager = null;
@@ -16,12 +28,11 @@ public class User {
             e.printStackTrace();
         }
 
-        Connection connection = null;
-        PreparedStatement ps = null;
         try {
-            connection = Objects.requireNonNull(dbManager).initConnection();
-            ps = connection.prepareStatement(
-                    "select username, password from user where username= ? and password= ?");
+
+            Connection connection = dbManager.initConnection();
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT username, password from user where username= ? and password= ?");
             ps.setString(1, username);
             ps.setString(2, password);
 

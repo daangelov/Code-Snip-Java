@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import javax.faces.context.FacesContext;
 
-
 public class DbManager implements Serializable {
 
     private String db_server = "";
@@ -31,14 +30,11 @@ public class DbManager implements Serializable {
     }
 
     public Connection initConnection() throws Exception {
-        if (this.connection == null) {
-            this.connection = DriverManager.getConnection(db_server, db_user, db_password);
-            this.connection.setAutoCommit(false);
-        } else if (this.connection.isClosed()) {
-            this.connection = null;
+        if (this.connection == null || this.connection.isClosed()) {
             this.connection = DriverManager.getConnection(db_server, db_user, db_password);
             this.connection.setAutoCommit(false);
         }
+
         return this.connection;
     }
 
