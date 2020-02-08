@@ -23,5 +23,6 @@
     <orderEntry type="library" name="Mojarra-2.2.1" level="project" />
     <orderEntry type="library" name="PrimeFaces-6.1" level="project" />
     <orderEntry type="library" name="PrimeFaces-6.1" level="project" />
+    <orderEntry type="library" name="MySqlConnectorJava-8.0.19" level="project" />
   </component>
 </module>

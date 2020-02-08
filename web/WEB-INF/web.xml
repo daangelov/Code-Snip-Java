@@ -15,6 +15,23 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    <context-param>
+        <param-name>JDBC-DRIVER</param-name>
+        <param-value>com.mysql.cj.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DB-SERVER</param-name>
+        <param-value>jdbc:mysql://localhost:3306/code_snip</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DB-USER</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DB-PASSWORD</param-name>
+        <param-value>231</param-value>
+    </context-param>
+
     <mime-mapping>
         <extension>eot</extension>
         <mime-type>application/vnd.ms-fontobject</mime-type>

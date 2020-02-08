@@ -14,12 +14,12 @@
         <h:form id="loginForm" class="form-inline my-2 my-lg-0 ml-auto" method="POST">
             <label class="sr-only" for="username">Потребителско име</label>
             <h:inputText id="username" name="username" type="text" styleClass="form-control mr-sm-2 mb-2 mb-sm-0"
-                         a:placeholder="Потребителско име"/>
+                         a:placeholder="Потребителско име" value="#{loginBean.username}"/>
             <label class="sr-only" for="password">Парола</label>
             <h:inputText id="password" name="password" type="password" styleClass="form-control mr-sm-2"
-                         a:placeholder="Парола"/>
+                         a:placeholder="Парола" value="#{loginBean.password}"/>
 
-            <h:commandButton type="submit" styleClass="btn btn-default" value="Вход" action="login"/>
+            <h:commandButton type="submit" styleClass="btn btn-default" value="Вход" action="#{loginBean.login}"/>
             <h:outputLink value="register.xhtml" styleClass="btn btn-default">Регистрация</h:outputLink>
         </h:form>
     </ui:define>
