@@ -13,6 +13,7 @@ public class UserBean {
 
     private User user = new User();
     private String errorMessage = "";
+    private boolean isLogged = false;
 
     public User getUser() {
         return user;
@@ -30,11 +31,20 @@ public class UserBean {
         this.errorMessage = errorMessage;
     }
 
+    public boolean isLogged() {
+        return isLogged;
+    }
+
+    public void setLogged(boolean logged) {
+        isLogged = logged;
+    }
+
     public String login() {
         try {
             UserModel userModel = new UserModel();
             User user = userModel.find(this.user.getUsername());
             if (user != null && EncryptPassword.validatePassword(this.user.getPassword(), user.getPassword(), user.getPasswordSalt())) {
+                this.setLogged(true);
                 return "dashboard";
             }
         } catch (Exception e) {
@@ -52,13 +62,22 @@ public class UserBean {
             this.user.setPassword(EncryptPassword.generateSecurePassword(this.user.getPassword(), passwordSalt));
             this.user.setPasswordSalt(passwordSalt);
 
-            userModel.create(this.user);
+            if (userModel.create(this.user)) {
+                return "index";
+            }
 
-            return "index";
         } catch (Exception e) {
-            this.setErrorMessage("Възникна грешка. Не можахме да създадем акаунт!");
-
-            return "register";
+            System.out.println(e.getMessage());
         }
+
+        this.setErrorMessage("Възникна грешка. Не можахме да създадем акаунт!");
+        return "register";
+    }
+
+    public String logout() {
+        this.user.clear();
+        this.setLogged(false);
+
+        return "index";
     }
 }

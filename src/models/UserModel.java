@@ -4,50 +4,75 @@ import database.DbManager;
 import entities.User;
 
 import java.sql.*;
-import java.util.Objects;
 
 public class UserModel {
 
-    public void create(User user) {
-        // TODO implement this
-    }
+    public boolean create(User user) {
 
-    public User find(String username) {
-        // TODO implement this
-
-        return new User();
-    }
-
-    public static boolean login(String username, String password) {
-
+        int success = 0;
         DbManager dbManager = null;
+        PreparedStatement stmt = null;
 
         try {
             dbManager = new DbManager();
+            Connection conn = dbManager.initConnection();
+            String query = "INSERT INTO user (username, password, password_salt, firstname, lastname, email) VALUES(?, ?, ?, ?, ?, ?)";
+            stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getPasswordSalt());
+            stmt.setString(4, user.getFirstName());
+            stmt.setString(5, user.getLastName());
+            stmt.setString(6, user.getEmail());
+
+            int rowAffected = stmt.executeUpdate();
+            if(rowAffected == 1) {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if(rs.next()) {
+                    System.out.println(rs.getInt(1));
+                }
+                success = 1;
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (dbManager != null) {
+                    dbManager.closeConnection();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
 
-        try {
+        return success == 1;
+    }
 
-            Connection connection = dbManager.initConnection();
-            PreparedStatement ps = connection.prepareStatement(
-                    "SELECT username, password from user where username= ? and password= ?");
-            ps.setString(1, username);
-            ps.setString(2, password);
+    public User find(String username) throws Exception {
+        DbManager dbManager = new DbManager();
+        Connection conn = dbManager.initConnection();
 
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) { // found
-                return true;
-            } else {
-                System.out.println("No such user");
-                return false;
-            }
-        } catch (Exception ex) {
-            System.out.println("Error in login() -->" + ex.getMessage());
-            return false;
-        } finally {
-            Objects.requireNonNull(dbManager).closeConnection();
+        String query = "SELECT * FROM user WHERE username=?";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setString(1, username);
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) { // found
+            User foundUser = new User(rs.getString("username"),
+                    rs.getString("password"),
+                    rs.getString("password_salt"),
+                    rs.getString("email"),
+                    rs.getString("firstname"),
+                    rs.getString("lastname"));
+            dbManager.closeConnection();
+            return foundUser;
+        } else {
+            System.out.println("no user found");
+            dbManager.closeConnection();
+            return null;
         }
     }
 }

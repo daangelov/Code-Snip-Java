@@ -29,7 +29,7 @@
     </context-param>
     <context-param>
         <param-name>DB-PASSWORD</param-name>
-        <param-value>231</param-value>
+        <param-value> </param-value>
     </context-param>
 
     <mime-mapping>

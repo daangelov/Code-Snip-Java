@@ -20,84 +20,94 @@
                     <div class="card">
                         <div class="card-header text-center">
                             <h2>Регистрация</h2>
+                            <h2>#{userBean.errorMessage}</h2>
                         </div>
                         <div class="card-body">
                             <h:form id="registerForm" method="POST" class="needs-validation" novalidate="true">
                                 <!-- First Name -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="firstNameAddOn"><i
-                                                class="fas fa-user"/></span>
+                                        <span class="input-group-text" id="firstNameAddOn">
+                                            <i class="fas fa-user"/>
+                                        </span>
                                     </div>
                                     <h:inputText id="firstName" name="first_name" type="text" styleClass="form-control"
                                                  a:placeholder="Име" aria-label="Име" aria-describedby="firstNameAddOn"
-                                                 a:required="true"/>
+                                                 a:required="true" value="#{userBean.user.firstName}"/>
                                     <div class="invalid-feedback">Невалидно име</div>
                                 </div>
 
                                 <!-- Last Name -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="lastNameAddOn"><i
-                                                class="fas fa-user"/></span>
+                                        <span class="input-group-text" id="lastNameAddOn">
+                                            <i class="fas fa-user"/>
+                                        </span>
                                     </div>
                                     <h:inputText id="lastName" name="last_name" type="text" styleClass="form-control"
                                                  a:placeholder="Фамилия" aria-label="Фамилия"
-                                                 aria-describedby="lastNameAddOn" a:required="true"/>
+                                                 aria-describedby="lastNameAddOn" a:required="true"
+                                                 value="#{userBean.user.lastName}"/>
                                     <div class="invalid-feedback">Невалидна фамилия</div>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="emailAddOn"><i
-                                                class="fas fa-envelope-square"/></span>
+                                        <span class="input-group-text" id="emailAddOn">
+                                            <i class="fas fa-envelope-square"/>
+                                        </span>
                                     </div>
                                     <h:inputText id="email" name="email" type="email" styleClass="form-control"
                                                  a:placeholder="E-mail адрес" aria-label="E-mail адрес"
-                                                 aria-describedby="emailAddOn" a:required="true"/>
+                                                 aria-describedby="emailAddOn" a:required="true"
+                                                 value="#{userBean.user.email}"/>
                                     <div class="invalid-feedback">Невалиден email</div>
                                 </div>
 
                                 <!-- Username -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="usernameAddOn"><i
-                                                class="fas fa-user"/></span>
+                                        <span class="input-group-text" id="usernameAddOn">
+                                            <i class="fas fa-user"/>
+                                        </span>
                                     </div>
                                     <h:inputText id="username" name="username" type="text" styleClass="form-control"
                                                  a:placeholder="Потребителско име" aria-label="Потребителско име"
-                                                 aria-describedby="usernameAddOn" a:required="true"/>
+                                                 aria-describedby="usernameAddOn" a:required="true"
+                                                 value="#{userBean.user.username}"/>
                                     <div class="invalid-feedback">Невалидно потребителско име</div>
                                 </div>
 
                                 <!-- Password -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="passwordAddOn"><i
-                                                class="fas fa-lock"/></span>
+                                        <span class="input-group-text" id="passwordAddOn">
+                                            <i class="fas fa-lock"/>
+                                        </span>
                                     </div>
-                                    <h:inputText id="password" name="password" type="password" styleClass="form-control"
+                                    <h:inputSecret id="password" name="password" type="password" styleClass="form-control"
                                                  a:placeholder="Парола" aria-label="Парола"
-                                                 aria-describedby="passwordAddOn" required="true"/>
+                                                 aria-describedby="passwordAddOn" required="true"
+                                                 value="#{userBean.user.password}"/>
                                     <div class="invalid-feedback">Невалидна парола</div>
                                 </div>
 
                                 <!-- Password Confirm-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="confirmPasswordAddOn"><i
-                                                class="fas fa-lock"/></span>
-                                    </div>
-                                    <h:inputText id="confirmPassword" type="password" styleClass="form-control"
-                                                 a:placeholder="Потвърди парола" aria-label="Потвърди парола"
-                                                 aria-describedby="confirmPasswordAddOn" required="true"/>
-                                    <div class="invalid-feedback">Паролите не съвпадат</div>
-                                </div>
+                                <!--                                <div class="input-group mb-3">-->
+                                <!--                                    <div class="input-group-prepend">-->
+                                <!--                                        <span class="input-group-text" id="confirmPasswordAddOn"><i-->
+                                <!--                                                class="fas fa-lock"/></span>-->
+                                <!--                                    </div>-->
+                                <!--                                    <h:inputText id="confirmPassword" type="password" styleClass="form-control"-->
+                                <!--                                                 a:placeholder="Потвърди парола" aria-label="Потвърди парола"-->
+                                <!--                                                 aria-describedby="confirmPasswordAddOn" required="true"/>-->
+                                <!--                                    <div class="invalid-feedback">Паролите не съвпадат</div>-->
+                                <!--                                </div>-->
 
                                 <!-- Submit button -->
                                 <h:commandButton styleClass="btn btn-lg btn-primary btn-block" name="submit"
-                                                 type="submit" value="Регистрирай се"/>
+                                                 type="submit" value="Регистрирай се" action="#{userBean.register()}"/>
                             </h:form>
                         </div>
                     </div>

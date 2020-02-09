@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://java.sun.com/jsf/core">
+      xmlns:a="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -35,11 +36,18 @@
         <div id="navigationBar" class="collapse navbar-collapse">
             <ui:insert name="navbar">Navigator bar</ui:insert>
         </div>
+
+        <c:if test="#{userBean.logged}">
+            <h:form id="logoutForm" class="form-inline my-2 my-lg-0 ml-auto" method="POST">
+                <h:commandButton action="#{userBean.logout()}" type="submit" styleClass="btn btn-danger my-2 my-sm-0"
+                                 value="Изход"/>
+            </h:form>
+        </c:if>
     </div>
 
     <ui:insert name="container">Container</ui:insert>
 
-    <div class="footer mt-auto py-3 text-center">
+    <div class="footer mt-auto py-3 text-center fixed-bottom">
         <div class="container">
             <span class="text-muted">CodeSnip</span>
         </div>
