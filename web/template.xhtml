@@ -38,7 +38,7 @@
             <ui:insert name="navbar">Navigator bar</ui:insert>
         </div>
 
-        <c:if test="#{userBean.logged}">
+        <c:if test="#{userBean.loggedIn}">
             <h:form id="logoutForm" class="form-inline my-2 my-lg-0 ml-auto" method="POST">
                 <h:commandButton action="#{userBean.logout()}" type="submit" styleClass="btn btn-danger my-2 my-sm-0"
                                  value="Изход"/>

@@ -14,7 +14,7 @@ public class UserBean {
 
     private User user = new User();
 
-    private boolean isLogged = false;
+    private boolean isLoggedIn = false;
 
     public User getUser() {
         return user;
@@ -24,12 +24,20 @@ public class UserBean {
         this.user = user;
     }
 
-    public boolean isLogged() {
-        return isLogged;
+    public boolean isLoggedIn() {
+        return isLoggedIn;
     }
 
-    public void setLogged(boolean logged) {
-        isLogged = logged;
+    public void setLoggedIn(boolean loggedIn) {
+        this.isLoggedIn = loggedIn;
+    }
+
+    public String redirectToDashboard() {
+        return "dashboard?faces-redirect=true";
+    }
+
+    public String redirectToHome() {
+        return "index?faces-redirect=true";
     }
 
     public String login() {
@@ -37,15 +45,15 @@ public class UserBean {
             UserModel userModel = new UserModel();
             User user = userModel.find(this.user.getUsername());
             if (user != null && EncryptPassword.validatePassword(this.user.getPassword(), user.getPassword(), user.getPasswordSalt())) {
-                this.setLogged(true);
-                return "dashboard";
+                this.setLoggedIn(true);
+                return this.redirectToDashboard();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         MessageBean.showMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Невалидно потребителско име или парола!");
 
-        return "index";
+        return this.redirectToHome();
     }
 
     public String register() {
@@ -56,7 +64,7 @@ public class UserBean {
             this.user.setPasswordSalt(passwordSalt);
 
             if (userModel.create(this.user)) {
-                return "index";
+                return this.redirectToHome();
             }
 
         } catch (Exception e) {
@@ -65,13 +73,13 @@ public class UserBean {
 
         MessageBean.showMessage(FacesMessage.SEVERITY_ERROR, "Внимание!", "Възникна грешка. Не можахме да създадем акаунт!");
 
-        return "register";
+        return "register?faces-redirect=true";
     }
 
     public String logout() {
         this.user.clear();
-        this.setLogged(false);
+        this.setLoggedIn(false);
 
-        return "index";
+        return this.redirectToHome();
     }
 }
