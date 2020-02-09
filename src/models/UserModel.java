@@ -25,14 +25,7 @@ public class UserModel {
             stmt.setString(5, user.getLastName());
             stmt.setString(6, user.getEmail());
 
-            int rowAffected = stmt.executeUpdate();
-            if(rowAffected == 1) {
-                ResultSet rs = stmt.getGeneratedKeys();
-                if(rs.next()) {
-                    System.out.println(rs.getInt(1));
-                }
-                success = 1;
-            }
+            success = stmt.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
@@ -70,7 +63,6 @@ public class UserModel {
             dbManager.closeConnection();
             return foundUser;
         } else {
-            System.out.println("no user found");
             dbManager.closeConnection();
             return null;
         }

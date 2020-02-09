@@ -41,3 +41,27 @@ main > .container {
     padding-right: 15px;
     padding-left: 15px;
 }
+
+.ui-growl-error {
+    background-color: #f8b7bd;
+    border: 0;
+}
+
+.ui-growl-warn {
+    background-color: #ffe399;
+    border: 0;
+}
+
+.ui-growl-info {
+    background-color: #b7d8b7;
+    border: 0;
+}
+
+.ui-inputfield {
+    box-shadow: none;
+    padding: .375rem .75rem !important;
+}
+
+.ui-widget {
+    font-family: inherit;
+}

@@ -4,6 +4,7 @@ import entities.User;
 import helpers.EncryptPassword;
 import models.UserModel;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -12,7 +13,7 @@ import javax.faces.bean.SessionScoped;
 public class UserBean {
 
     private User user = new User();
-    private String errorMessage = "";
+
     private boolean isLogged = false;
 
     public User getUser() {
@@ -21,14 +22,6 @@ public class UserBean {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
     }
 
     public boolean isLogged() {
@@ -50,8 +43,8 @@ public class UserBean {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        MessageBean.showMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Невалидно потребителско име или парола!");
 
-        this.setErrorMessage("Невалидно потребителско име или парола!");
         return "index";
     }
 
@@ -70,7 +63,8 @@ public class UserBean {
             System.out.println(e.getMessage());
         }
 
-        this.setErrorMessage("Възникна грешка. Не можахме да създадем акаунт!");
+        MessageBean.showMessage(FacesMessage.SEVERITY_ERROR, "Внимание!", "Възникна грешка. Не можахме да създадем акаунт!");
+
         return "register";
     }
 
