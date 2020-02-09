@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="./template.xhtml">
     <ui:define name="title">Моите парчета код</ui:define>
@@ -15,94 +14,29 @@
 
     <ui:define name="container">
         <div class="container my-5">
+            <div id="mainDashboard" class="mb-5">
 
-            <div id="errorMessageLogin" class="text-center d-none">
-                <h1>Моля влезте в своя профил</h1>
+                <p:fieldset legend="Добави парче код" toggleable="true" toggleSpeed="500" collapsed="true">
+                    <h:panelGrid>
+                        <h:form id="createSnippetForm" method="post">
+                            <p:inputText styleClass="mr-5" id="title" name="title" placeholder="Заглавие"
+                                         value="#{snippetBean.snippet.title}"/>
+                            <p:inputText id="lang" name="lang" placeholder="Език" value="#{snippetBean.snippet.lang}"/>
+
+                            <p:textEditor widgetVar="codeEditor" value="#{snippetBean.snippet.text}" height="200"
+                                          placeholder="Твоят код" styleClass="mt-3">
+                                <f:facet name="toolbar">
+                                    <span class="ql-formats">
+                                        <button class="ql-code-block active"/>
+                                    </span>
+                                </f:facet>
+                            </p:textEditor>
+                            <h:commandButton type="submit" styleClass="btn btn-success float-right mt-3" value="Запази"
+                                             action="#{snippetBean.save()}"/>
+                        </h:form>
+                    </h:panelGrid>
+                </p:fieldset>
             </div>
-
-                <h1>DASHBOARD</h1>
-<!--            <div id="mainDashboard" class="d-none mb-5">-->
-<!--                <div class="row">-->
-<!--                    <div class="col">-->
-<!--                        <div class="d-flex justify-content-between">-->
-<!--                            <h3>Моите парчета код</h3>-->
-<!--                            <button id="addSnippet" class="btn btn-info" type="button" data-toggle="collapse"-->
-<!--                                    data-target="#createSnippet" aria-expanded="false" aria-controls="collapseExample">-->
-<!--                                Добави парче код-->
-<!--                            </button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="row mt-2">-->
-<!--                    <div class="col mb-5">-->
-<!--                        <div class="collapse" id="createSnippet">-->
-<!--                            <div class="card">-->
-<!--                                <div class="card-body">-->
-
-<!--                                    <form id="createSnippetForm" method="post">-->
-<!--                                        <div class="form-row">-->
-<!--                                            <div class="form-group col-md-6">-->
-<!--                                                <label for="title">Заглавие</label>-->
-<!--                                                <input type="text" class="form-control" id="title" name="title">-->
-<!--                                            </div>-->
-<!--                                            <div class="form-group col-md-6">-->
-<!--                                                <label for="lang">Език</label>-->
-<!--                                                <input type="text" class="form-control" id="lang" name="lang">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-
-<!--                                        <div class="form-row">-->
-<!--                                            <div class="form-group col">-->
-<!--                                                <label for="content">Код</label>-->
-<!--                                                <textarea class="form-control snip-textarea" rows="4" id="content"-->
-<!--                                                          placeholder="Поставете Вашето парче код тук"-->
-<!--                                                          name="content"></textarea>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <button type="submit" class="btn btn-success">Запази</button>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div id="errorMessageNoSnippets" class="alert alert-warning text-center mt-5 d-none">-->
-<!--                    <strong>Все още нямате добавени снипети</strong></div>-->
-
-<!--                <div class="accordion" id="accordion" style="margin-bottom: 100px;">-->
-<!--                    <div id="tempSnippet" class="card border-bottom mb-3 d-none">-->
-<!--                        <div class="card-header">-->
-<!--                            <div class="row">-->
-<!--                                <div class="col-sm-4">-->
-<!--                                    <button class="btn btn-link btn-lg p-0" data-id="title" data-toggle="collapse"-->
-<!--                                            data-target="#snippetBody" aria-expanded="true"></button>-->
-<!--                                    <p data-id="lang" class="text-muted"></p>-->
-<!--                                </div>-->
-<!--                                <div class="col-sm-8">-->
-<!--                                    <form class="form-inline float-sm-right">-->
-<!--                                        <div class="form-group">-->
-<!--                                            <label class="mr-1">Сподели:-->
-<!--                                                <input data-id="snippetUrl" type="text" class="form-control ml-sm-1"-->
-<!--                                                       value="">-->
-<!--                                            </label>-->
-<!--                                        </div>-->
-<!--                                        <button data-id="deleteSnippet" class="btn btn-danger">-->
-<!--                                            <i class="fas fa-trash"></i>-->
-<!--                                        </button>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        <div id="snippetBody" class="collapse" data-parent="#accordion">-->
-<!--                            <div class="card-body">-->
-<!--                                <pre><code class="hljs" data-id="content">afafef</code></pre>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
         </div>
     </ui:define>
 </ui:composition>
