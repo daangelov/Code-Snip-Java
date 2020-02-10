@@ -45,12 +45,15 @@ public class UserBean {
             UserModel userModel = new UserModel();
             User user = userModel.find(this.user.getUsername());
             if (user != null && EncryptPassword.validatePassword(this.user.getPassword(), user.getPassword(), user.getPasswordSalt())) {
+                this.user = user;
                 this.setLoggedIn(true);
+
                 return this.redirectToDashboard();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
         MessageBean.showMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Невалидно потребителско име или парола!");
 
         return this.redirectToHome();

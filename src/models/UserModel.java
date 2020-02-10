@@ -54,7 +54,9 @@ public class UserModel {
 
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) { // found
-            User foundUser = new User(rs.getString("username"),
+            User foundUser = new User(
+                    rs.getLong("id"),
+                    rs.getString("username"),
                     rs.getString("password"),
                     rs.getString("password_salt"),
                     rs.getString("email"),

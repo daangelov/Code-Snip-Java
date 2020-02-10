@@ -1,6 +1,7 @@
 package entities;
 
 public class User {
+    private long id;
     private String username;
     private String password;
     private String passwordSalt;
@@ -11,13 +12,22 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String passwordSalt, String email, String firstName, String lastName) {
+    public User(long id, String username, String password, String passwordSalt, String email, String firstName, String lastName) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.passwordSalt = passwordSalt;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {

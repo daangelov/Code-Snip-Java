@@ -29,7 +29,7 @@
     </context-param>
     <context-param>
         <param-name>DB-SERVER</param-name>
-        <param-value>jdbc:mysql://localhost:3306/code_snip</param-value>
+        <param-value>jdbc:mysql://localhost:3306/codesnip</param-value>
     </context-param>
     <context-param>
         <param-name>DB-USER</param-name>

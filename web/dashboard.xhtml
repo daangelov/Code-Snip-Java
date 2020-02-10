@@ -4,7 +4,8 @@
 <html xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition template="./template.xhtml">
     <ui:define name="title">Моите парчета код</ui:define>
@@ -15,14 +16,12 @@
     <ui:define name="container">
         <div class="container my-5">
             <div id="mainDashboard" class="mb-5">
-
                 <p:fieldset legend="Добави парче код" toggleable="true" toggleSpeed="500" collapsed="true">
                     <h:panelGrid>
                         <h:form id="createSnippetForm" method="post">
                             <p:inputText styleClass="mr-5" id="title" name="title" placeholder="Заглавие"
                                          value="#{snippetBean.snippet.title}"/>
                             <p:inputText id="lang" name="lang" placeholder="Език" value="#{snippetBean.snippet.lang}"/>
-
                             <p:textEditor widgetVar="codeEditor" value="#{snippetBean.snippet.text}" height="200"
                                           placeholder="Твоят код" styleClass="mt-3">
                                 <f:facet name="toolbar">
@@ -36,6 +35,14 @@
                         </h:form>
                     </h:panelGrid>
                 </p:fieldset>
+
+                <p:dashboard id="board" model="#{snippetsView.model}" styleClass="mt-3">
+                    <c:forEach items="#{snippetsView.snippets}" var="snippet">
+                        <p:panel id="snippet#{snippet.id}" header="${snippet.title}">
+                            <h:outputText value="#{snippet.text}" escape="false"/>
+                        </p:panel>
+                    </c:forEach>
+                </p:dashboard>
             </div>
         </div>
     </ui:define>

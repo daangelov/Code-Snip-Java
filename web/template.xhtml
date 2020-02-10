@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -20,44 +21,48 @@
     <title><ui:insert name="title">Title</ui:insert></title>
 </h:head>
 
-<h:body>
-    <!-- Loading div and gif -->
-    <div id="loadingOverlay"></div>
-    <div id="loader"></div>
+<f:view encoding="utf-8" contentType="application/xhtml+xml">
+    <h:body>
+        <!-- Loading div and gif -->
+        <div id="loadingOverlay"></div>
+        <div id="loader"></div>
 
-    <p:growl id="growl" showDetail="true"/>
+        <p:growl id="growl" showDetail="true"/>
 
-    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <h:outputLink value="index.xhtml" styleClass="navbar-brand">CodeSnip</h:outputLink>
+            <h:outputLink value="index.xhtml" styleClass="navbar-brand">CodeSnip</h:outputLink>
 
-        <h:button styleClass="navbar-toggler navbar-toggler-icon" type="button" data-toggle="collapse"
-                  data-target="#navigationBar" aria-controls="navbarToggler" aria-expanded="false" aria-label="Menu"/>
+            <h:button styleClass="navbar-toggler navbar-toggler-icon" type="button" data-toggle="collapse"
+                      data-target="#navigationBar" aria-controls="navbarToggler" aria-expanded="false"
+                      aria-label="Menu"/>
 
-        <div id="navigationBar" class="collapse navbar-collapse">
-            <ui:insert name="navbar">Navigator bar</ui:insert>
+            <div id="navigationBar" class="collapse navbar-collapse">
+                <ui:insert name="navbar">Navigator bar</ui:insert>
+            </div>
+
+            <c:if test="#{userBean.loggedIn}">
+                <h:form id="logoutForm" class="form-inline my-2 my-lg-0 ml-auto" method="POST">
+                    <h:commandButton action="#{userBean.logout()}" type="submit"
+                                     styleClass="btn btn-danger my-2 my-sm-0"
+                                     value="Изход"/>
+                </h:form>
+            </c:if>
         </div>
 
-        <c:if test="#{userBean.loggedIn}">
-            <h:form id="logoutForm" class="form-inline my-2 my-lg-0 ml-auto" method="POST">
-                <h:commandButton action="#{userBean.logout()}" type="submit" styleClass="btn btn-danger my-2 my-sm-0"
-                                 value="Изход"/>
-            </h:form>
-        </c:if>
-    </div>
+        <ui:insert name="container">Container</ui:insert>
 
-    <ui:insert name="container">Container</ui:insert>
-
-    <div class="footer mt-auto py-3 text-center fixed-bottom">
-        <div class="container">
-            <span class="text-muted">CodeSnip</span>
+        <div class="footer mt-auto py-3 text-center fixed-bottom">
+            <div class="container">
+                <span class="text-muted">CodeSnip</span>
+            </div>
         </div>
-    </div>
 
-<!--    <h:outputScript library="jquery" name="jquery.min.js"/>-->
-<!--    <h:outputScript library="bootstrap" name="bootstrap.min.js"/>-->
-    <h:outputScript library="fontawesome" name="all.min.js"/>
-    <h:outputScript library="js" name="main.js"/>
+        <!--    <h:outputScript library="jquery" name="jquery.min.js"/>-->
+        <!--    <h:outputScript library="bootstrap" name="bootstrap.min.js"/>-->
+        <h:outputScript library="fontawesome" name="all.min.js"/>
+        <h:outputScript library="js" name="main.js"/>
 
-</h:body>
+    </h:body>
+</f:view>
 </html>
