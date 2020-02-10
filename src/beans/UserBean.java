@@ -7,6 +7,7 @@ import models.UserModel;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.validator.ValidatorException;
 
 @ManagedBean(name = "userBean")
 @SessionScoped
@@ -56,7 +57,7 @@ public class UserBean {
 
         MessageBean.showMessage(FacesMessage.SEVERITY_WARN, "Внимание!", "Невалидно потребителско име или парола!");
 
-        return this.redirectToHome();
+        return "index";
     }
 
     public String register() {

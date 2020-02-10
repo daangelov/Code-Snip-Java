@@ -53,4 +53,26 @@ public class SnippetBean {
 
         return "dashboard?faces-redirect=true";
     }
+
+    public String delete(long snippetId)
+    {
+        boolean success = true;
+        try {
+            SnippetModel snippetModel = new SnippetModel();
+            if (!snippetModel.delete(snippetId)) {
+                success = false;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            success = false;
+        }
+
+        if (!success) {
+            MessageBean.showMessage(FacesMessage.SEVERITY_ERROR, "Внимание!", "Не можахме да изтрием това парче код.");
+        }
+
+        return "dashboard?faces-redirect=true";
+
+    }
 }

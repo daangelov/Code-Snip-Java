@@ -74,4 +74,35 @@ public class SnippetModel {
 
         return result;
     }
+
+    public boolean delete(long snippetId) {
+        int success = 0;
+        DbManager dbManager = null;
+        PreparedStatement stmt = null;
+
+        try {
+            dbManager = new DbManager();
+            Connection conn = dbManager.initConnection();
+            String query = "DELETE FROM snippet WHERE id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setLong(1, snippetId);
+
+            success = stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (dbManager != null) {
+                    dbManager.closeConnection();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return success == 1;
+    }
 }

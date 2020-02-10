@@ -40,6 +40,16 @@
                     <c:forEach items="#{snippetsView.snippets}" var="snippet">
                         <p:panel id="snippet#{snippet.id}" header="${snippet.title}">
                             <h:outputText value="#{snippet.text}" escape="false"/>
+                            <f:facet name="actions">
+                                <h:form>
+                                    <h:commandLink
+                                            style="margin-top: -30px;padding-left: 7px;padding-right:7px;margin-right: -10px"
+                                            action="#{snippetBean.delete(snippet.id)}"
+                                            styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+                                        <i class="fa fa-times"/>
+                                    </h:commandLink>
+                                </h:form>
+                            </f:facet>
                         </p:panel>
                     </c:forEach>
                 </p:dashboard>
